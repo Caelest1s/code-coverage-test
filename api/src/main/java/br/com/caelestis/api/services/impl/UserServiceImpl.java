@@ -6,19 +6,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.caelestis.api.domain.Usuario;
-import br.com.caelestis.api.repositories.UserRepository;
+import br.com.caelestis.api.repositories.UsuarioRepository;
 import br.com.caelestis.api.services.UserService;
+import br.com.caelestis.api.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    private UserRepository repository;
+    private UsuarioRepository repository;
 
     @Override
     public Usuario findById(Integer id) {
         Optional<Usuario> obj = repository.findById(id);
-        return obj.orElse(null);
+        return obj.orElseThrow(() -> new ObjectNotFoundException("objeto não encontrado"));
     }
 
 }

@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import br.com.caelestis.api.domain.Usuario;
 
 @Repository
-public interface UserRepository extends JpaRepository<Usuario, Integer> {
+public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
 
 }
