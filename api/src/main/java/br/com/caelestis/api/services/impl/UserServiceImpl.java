@@ -1,5 +1,6 @@
 package br.com.caelestis.api.services.impl;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,12 @@ public class UserServiceImpl implements UserService {
     public Usuario findById(Integer id) {
         Optional<Usuario> obj = repository.findById(id);
         return obj.orElseThrow(() -> new ObjectNotFoundException("objeto não encontrado"));
+    }
+
+    @Override
+    public List<Usuario> findAll() {
+        List<Usuario> result = repository.findAll();
+        return result;
     }
 
 }
