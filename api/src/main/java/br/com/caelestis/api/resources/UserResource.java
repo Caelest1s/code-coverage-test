@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,13 +25,15 @@ import br.com.caelestis.api.services.UserService;
 @RequestMapping(value = "/user")
 public class UserResource {
 
+    private static final String ID = "/{id}";
+
     @Autowired
     private ModelMapper mapper;
 
     @Autowired
     private UserService service;
 
-    @GetMapping(value = "/{id}")
+    @GetMapping(value = ID)
     public ResponseEntity<UsuarioDTO> findById(@PathVariable Integer id) {
         return ResponseEntity.ok().body(
                 mapper.map(service.findById(id), UsuarioDTO.class));
@@ -52,10 +55,16 @@ public class UserResource {
         return ResponseEntity.created(uri).build();
     }
 
-    @PutMapping(value = "/{id}")
+    @PutMapping(value = ID)
     public ResponseEntity<UsuarioDTO> update(@PathVariable Integer id, @RequestBody UsuarioDTO dto) {
         dto.setId(id);
         Usuario newObj = service.update(dto);
         return ResponseEntity.ok().body(mapper.map(newObj, UsuarioDTO.class));
+    }
+
+    @DeleteMapping(value = ID)
+    public ResponseEntity<UsuarioDTO> delete(@PathVariable Integer id) {
+        service.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }
