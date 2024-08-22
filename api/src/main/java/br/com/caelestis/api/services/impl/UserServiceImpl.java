@@ -11,6 +11,7 @@ import br.com.caelestis.api.domain.Usuario;
 import br.com.caelestis.api.domain.dto.UsuarioDTO;
 import br.com.caelestis.api.repositories.UsuarioRepository;
 import br.com.caelestis.api.services.UserService;
+import br.com.caelestis.api.services.exceptions.DataIntegratyViolationException;
 import br.com.caelestis.api.services.exceptions.ObjectNotFoundException;
 
 @Service
@@ -36,7 +37,15 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Usuario create(UsuarioDTO obj) {
+        findByEmail(obj);
         return repository.save(mapper.map(obj, Usuario.class));
+    }
+
+    private void findByEmail(UsuarioDTO obj) {
+        Optional<Usuario> usuario = repository.findByEmail(obj.getEmail());
+        if (usuario.isPresent()) {
+            throw new DataIntegratyViolationException("E-mail já cadastrado no sistema");
+        }
     }
 
 }
