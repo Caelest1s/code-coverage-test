@@ -3,10 +3,12 @@ package br.com.caelestis.api.services.impl;
 import java.util.List;
 import java.util.Optional;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.caelestis.api.domain.Usuario;
+import br.com.caelestis.api.domain.dto.UsuarioDTO;
 import br.com.caelestis.api.repositories.UsuarioRepository;
 import br.com.caelestis.api.services.UserService;
 import br.com.caelestis.api.services.exceptions.ObjectNotFoundException;
@@ -16,6 +18,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UsuarioRepository repository;
+
+    @Autowired
+    private ModelMapper mapper;
 
     @Override
     public Usuario findById(Integer id) {
@@ -27,6 +32,11 @@ public class UserServiceImpl implements UserService {
     public List<Usuario> findAll() {
         List<Usuario> result = repository.findAll();
         return result;
+    }
+
+    @Override
+    public Usuario create(UsuarioDTO obj) {
+        return repository.save(mapper.map(obj, Usuario.class));
     }
 
 }
