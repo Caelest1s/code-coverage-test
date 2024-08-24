@@ -19,11 +19,11 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.caelestis.api.domain.Usuario;
 import br.com.caelestis.api.domain.dto.UsuarioDTO;
-import br.com.caelestis.api.services.UserService;
+import br.com.caelestis.api.services.UsuarioService;
 
 @RestController
 @RequestMapping(value = "/user")
-public class UserResource {
+public class UsuarioResource {
 
     private static final String ID = "/{id}";
 
@@ -31,7 +31,7 @@ public class UserResource {
     private ModelMapper mapper;
 
     @Autowired
-    private UserService service;
+    private UsuarioService service;
 
     @GetMapping(value = ID)
     public ResponseEntity<UsuarioDTO> findById(@PathVariable Integer id) {

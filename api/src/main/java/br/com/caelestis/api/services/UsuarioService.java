@@ -5,7 +5,7 @@ import java.util.List;
 import br.com.caelestis.api.domain.Usuario;
 import br.com.caelestis.api.domain.dto.UsuarioDTO;
 
-public interface UserService {
+public interface UsuarioService {
 
     Usuario findById(Integer id);
 

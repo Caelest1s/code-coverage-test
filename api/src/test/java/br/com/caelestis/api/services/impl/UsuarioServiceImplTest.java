@@ -29,7 +29,7 @@ import br.com.caelestis.api.services.exceptions.DataIntegratyViolationException;
 import br.com.caelestis.api.services.exceptions.ObjectNotFoundException;
 
 @SpringBootTest
-public class UserServiceImplTest {
+public class UsuarioServiceImplTest {
 
     private static final Integer ID = 1;
     private static final String NAME = "Jefferson";
@@ -40,7 +40,7 @@ public class UserServiceImplTest {
     private static final String EMAIL_JA_CADASTRADO = "E-mail já cadastrado no sistema";
 
     @InjectMocks
-    private UserServiceImpl service;
+    private UsuarioServiceImpl service;
 
     @Mock
     private UsuarioRepository repository;

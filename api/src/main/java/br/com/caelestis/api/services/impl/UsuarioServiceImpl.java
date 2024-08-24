@@ -10,12 +10,12 @@ import org.springframework.stereotype.Service;
 import br.com.caelestis.api.domain.Usuario;
 import br.com.caelestis.api.domain.dto.UsuarioDTO;
 import br.com.caelestis.api.repositories.UsuarioRepository;
-import br.com.caelestis.api.services.UserService;
+import br.com.caelestis.api.services.UsuarioService;
 import br.com.caelestis.api.services.exceptions.DataIntegratyViolationException;
 import br.com.caelestis.api.services.exceptions.ObjectNotFoundException;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UsuarioServiceImpl implements UsuarioService {
 
     @Autowired
     private UsuarioRepository repository;
