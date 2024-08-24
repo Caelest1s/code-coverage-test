@@ -35,7 +35,7 @@ public class UserServiceImplTest {
     private static final String NAME = "Jefferson";
     private static final String EMAIL = "jef@gmail.com";
     private static final String PASSWORD = "123456";
-    private static final String OBJECT_NOT_FOUND = "objeto não encontrado";
+    private static final String OBJECT_NOT_FOUND = "Objeto não encontrado";
     private static final Integer INDEX = 0;
     private static final String EMAIL_JA_CADASTRADO = "E-mail já cadastrado no sistema";
 
@@ -156,6 +156,17 @@ public class UserServiceImplTest {
         Mockito.doNothing().when(repository).deleteById(anyInt());
         service.delete(ID);
         verify(repository, times(1)).deleteById(anyInt());
+    }
+
+    @Test
+    void deleteWithObjectNotFountException() {
+        when(repository.findById(anyInt())).thenThrow(new ObjectNotFoundException(OBJECT_NOT_FOUND));
+        try {
+            service.delete(ID);
+        } catch (Exception ex) {
+            assertEquals(ObjectNotFoundException.class, ex.getClass());
+            assertEquals(OBJECT_NOT_FOUND, ex.getMessage());
+        }
     }
 
     private void startUsuario() {
