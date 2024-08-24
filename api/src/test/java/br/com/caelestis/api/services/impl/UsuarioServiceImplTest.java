@@ -58,6 +58,12 @@ public class UsuarioServiceImplTest {
         startUsuario();
     }
 
+    private void startUsuario() {
+        usuario = new Usuario(ID, NAME, EMAIL, PASSWORD);
+        usuarioDTO = new UsuarioDTO(ID, NAME, EMAIL, PASSWORD);
+        optionalUsuario = Optional.of(new Usuario(ID, NAME, EMAIL, PASSWORD));
+    }
+
     @Test
     void whenFindByIdThenReturnAnUserInstance() {
         when(repository.findById(anyInt())).thenReturn(optionalUsuario);
@@ -167,11 +173,5 @@ public class UsuarioServiceImplTest {
             assertEquals(ObjectNotFoundException.class, ex.getClass());
             assertEquals(OBJECT_NOT_FOUND, ex.getMessage());
         }
-    }
-
-    private void startUsuario() {
-        usuario = new Usuario(ID, NAME, EMAIL, PASSWORD);
-        usuarioDTO = new UsuarioDTO(ID, NAME, EMAIL, PASSWORD);
-        optionalUsuario = Optional.of(new Usuario(ID, NAME, EMAIL, PASSWORD));
     }
 }
