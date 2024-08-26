@@ -59,5 +59,4 @@ public class UsuarioServiceImpl implements UsuarioService {
         findById(id);
         repository.deleteById(id);
     }
-
 }

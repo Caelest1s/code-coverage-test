@@ -35,9 +35,10 @@ public class UsuarioServiceImplTest {
     private static final String NAME = "Jefferson";
     private static final String EMAIL = "jef@gmail.com";
     private static final String PASSWORD = "123456";
-    private static final String OBJECT_NOT_FOUND = "Objeto não encontrado";
+
     private static final Integer INDEX = 0;
-    private static final String EMAIL_JA_CADASTRADO = "E-mail já cadastrado no sistema";
+    private static final String OBJECT_NOT_FOUND = "Objeto não encontrado";
+    private static final String EXISTING_EMAIL_IN_SYSTEM = "E-mail já cadastrado no sistema";
 
     @InjectMocks
     private UsuarioServiceImpl service;
@@ -48,8 +49,8 @@ public class UsuarioServiceImplTest {
     @Mock
     private ModelMapper mapper;
 
-    private Usuario usuario;
-    private UsuarioDTO usuarioDTO;
+    private Usuario usuario = new Usuario();
+    private UsuarioDTO usuarioDTO = new UsuarioDTO();;
     private Optional<Usuario> optionalUsuario;
 
     @BeforeEach
@@ -125,7 +126,7 @@ public class UsuarioServiceImplTest {
             service.create(usuarioDTO);
         } catch (Exception ex) {
             assertEquals(DataIntegrityViolationException.class, ex.getClass());
-            assertEquals(EMAIL_JA_CADASTRADO, ex.getMessage());
+            assertEquals(EXISTING_EMAIL_IN_SYSTEM, ex.getMessage());
         }
     }
 
@@ -152,7 +153,7 @@ public class UsuarioServiceImplTest {
             service.create(usuarioDTO);
         } catch (Exception ex) {
             assertEquals(DataIntegrityViolationException.class, ex.getClass());
-            assertEquals(EMAIL_JA_CADASTRADO, ex.getMessage());
+            assertEquals(EXISTING_EMAIL_IN_SYSTEM, ex.getMessage());
         }
     }
 

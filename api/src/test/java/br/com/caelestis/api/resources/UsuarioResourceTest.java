@@ -35,6 +35,7 @@ public class UsuarioResourceTest {
     private static final String NAME = "testname";
     private static final String EMAIL = "teste@teste.com";
     private static final String PASSWORD = "123";
+
     private static final Integer INDEX = 0;
 
     @InjectMocks
