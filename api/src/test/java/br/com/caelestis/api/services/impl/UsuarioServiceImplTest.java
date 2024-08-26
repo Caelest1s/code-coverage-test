@@ -25,7 +25,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import br.com.caelestis.api.domain.Usuario;
 import br.com.caelestis.api.domain.dto.UsuarioDTO;
 import br.com.caelestis.api.repositories.UsuarioRepository;
-import br.com.caelestis.api.services.exceptions.DataIntegratyViolationException;
+import br.com.caelestis.api.services.exceptions.DataIntegrityViolationException;
 import br.com.caelestis.api.services.exceptions.ObjectNotFoundException;
 
 @SpringBootTest
@@ -124,7 +124,7 @@ public class UsuarioServiceImplTest {
             optionalUsuario.get().setId(2);
             service.create(usuarioDTO);
         } catch (Exception ex) {
-            assertEquals(DataIntegratyViolationException.class, ex.getClass());
+            assertEquals(DataIntegrityViolationException.class, ex.getClass());
             assertEquals(EMAIL_JA_CADASTRADO, ex.getMessage());
         }
     }
@@ -151,7 +151,7 @@ public class UsuarioServiceImplTest {
             optionalUsuario.get().setId(2);
             service.create(usuarioDTO);
         } catch (Exception ex) {
-            assertEquals(DataIntegratyViolationException.class, ex.getClass());
+            assertEquals(DataIntegrityViolationException.class, ex.getClass());
             assertEquals(EMAIL_JA_CADASTRADO, ex.getMessage());
         }
     }
